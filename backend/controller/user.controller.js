@@ -31,11 +31,12 @@ export const registerUser = async (req, res) => {
     });
 
     res.cookie("token", token, {
-      httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "Strict", // Prevent CSRF attacks
-      maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie expiration time (7 days)
+      httpOnly: true,
+      secure: true, // ✅ Force secure cookies
+      sameSite: "None", // ✅ Cross-site cookie needed for frontend-backend on different domains
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     res.status(201).json({
       message: "User registered successfully",
       success: true,
@@ -80,10 +81,11 @@ export const loginUser = async (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "Strict",
+      secure: true, 
+      sameSite: "None", 
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     res.status(200).json({
       message: "Logged in successfull",
       success: true,
