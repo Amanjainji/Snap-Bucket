@@ -25,7 +25,7 @@ const Navbar = () => {
         //setCartItems=({});
         toast.success(data.message);
       } else {
-        console.warn(error.message);
+        console.warn(data.message);
       }
     } catch (error) {
       console.warn(error.message);
