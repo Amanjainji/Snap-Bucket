@@ -25,10 +25,10 @@ const Navbar = () => {
         //setCartItems=({});
         toast.success(data.message);
       } else {
-        toast.error(data.message);
+        console.warn(error.message);
       }
     } catch (error) {
-      console.warn(error);
+      console.warn(error.message);
     }
   };
   useEffect(() => {

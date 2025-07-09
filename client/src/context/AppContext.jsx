@@ -40,7 +40,8 @@ export const AppContextProvider = ({ children }) => {
         setUser(data.user);
         setCartItems(data.user.cart);
       } else {
-        toast.error(data.message);
+        console.warn(data.message);
+        //toast.error(data.message);
       }
     } catch (error) {
       setUser(null);
@@ -117,7 +118,7 @@ export const AppContextProvider = ({ children }) => {
         const { data } = await axios.post("/api/cart/update", { cartItems });
 
         if (!data.success) {
-          toast.error(data.message);
+          console.warn(data.message);
         }
       } catch (error) {
         console.warn(error);

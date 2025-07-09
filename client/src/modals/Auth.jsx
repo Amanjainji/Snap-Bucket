@@ -22,7 +22,8 @@ const Auth = () => {
         setUser(data.user);
         setShowUserLogin(false);
       } else {
-        toast.error(data.message);
+        console.warn(data.message);
+        //toast.error(data.message);
       }
     } catch(error) {console.log(error)}
   };
