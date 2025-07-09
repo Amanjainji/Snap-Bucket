@@ -48,7 +48,7 @@ const Cart = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.warn(error.message);
     }
   };
   useEffect(() => {

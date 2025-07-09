@@ -1,5 +1,4 @@
 import { useAppContext } from "../context/AppContext";
-//import toast from "react-hot-toast";
 
 const MyOrders = () => {
   const { orders,navigate } = useAppContext();
