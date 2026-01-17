@@ -15,21 +15,6 @@ export const AppContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const [orders, setOrders] = useState([]);
-
-  const addOrder = ({ items, paymentType, amount }) => {
-    const newOrder = {
-      _id: Date.now().toString(),
-      items,
-      paymentType,
-      amount,
-      status: "Pending",
-      createdAt: new Date().toISOString(),
-    };
-    setOrders((prev) => [newOrder, ...prev]);
-    // clear the cart
-    setCartItems({});
-  };
 
 
   // fetch user auth status ,user Data and cart items
@@ -142,8 +127,8 @@ export const AppContextProvider = ({ children }) => {
     removeFromCart,
     searchQuery,
     setSearchQuery,
-    orders,
-    addOrder,
+    //orders,
+    //addOrder,
     cartCount,
     totalCartAmount,
     axios,

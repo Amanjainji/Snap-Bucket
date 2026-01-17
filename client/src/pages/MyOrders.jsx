@@ -1,7 +1,24 @@
 import { useAppContext } from "../context/AppContext";
+import { useEffect, useState } from "react";
 
 const MyOrders = () => {
-  const { orders,navigate } = useAppContext();
+  const { navigate, axios, products } = useAppContext();
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get("/api/order/user", {
+          withCredentials: true,
+        });
+        setOrders(res.data.orders);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   if (!orders.length) {
     return (
       <div className="mt-16 text-center text-gray-500">
@@ -16,9 +33,13 @@ const MyOrders = () => {
       </div>
     );
   }
+  const getProductById = (id) => {
+    return products.find((p) => p._id === id);
+  };
   return (
     <div className="mt-12 pb-16">
       <p className="text-2xl md:text-3xl font-medium">My Orders</p>
+
       {orders.map((order) => (
         <div
           key={order._id}
@@ -29,43 +50,57 @@ const MyOrders = () => {
             <span>Payment: {order.paymentType}</span>
             <span>Total: Rs.{order.amount.toFixed(2)}</span>
           </div>
-          {order.items.map((item, i) => (
-            <div
-              key={i}
-              className={`flex justify-between items-center border-b border-gray-300 p-4 ${
-                i === order.items.length - 1 ? "" : "mb-2"
-              }`}
-            >
-              <div className="flex items-center">
-                <img
-                  src={item.product.image[0]}
-                  alt={item.product.name}
-                  className="w-16 h-16 rounded"
-                />
-                <div className="ml-4">
-                  <h2 className="font-medium">{item.product.name}</h2>
-                  <p>Qty: {item.quantity}</p>
+
+          {order.items.map((item, i) => {
+            const product = getProductById(item.product);
+
+            return (
+              <div
+                key={i}
+                className={`flex justify-between items-center border-b border-gray-300 p-4 ${
+                  i === order.items.length - 1 ? "" : "mb-2"
+                }`}
+              >
+                <div className="flex items-center">
+                  {product && (
+                    <img
+                      src={product.image[0]}
+                      alt={product.name}
+                      className="w-16 h-16 rounded"
+                    />
+                  )}
+
+                  <div className="ml-4">
+                    <h2 className="font-medium">
+                      {product ? product.name : "Unknown Product"}
+                    </h2>
+                    <p>Qty: {item.quantity}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <p>Status: {order.status}</p>
+                  <p>
+                    Date:{" "}
+                    {new Date(order.createdAt).toLocaleString("en-IN", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
+                  </p>
+                  <p>
+                    Item Total: Rs.
+                    {product
+                      ? (product.offerPrice * item.quantity).toFixed(2)
+                      : "N/A"}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Status: {order.status}</p>
-                <p>
-                  Date:{" "}
-                  {new Date(order.createdAt).toLocaleString("en-IN", {
-                    dateStyle: "medium",
-                    timeStyle: "short",
-                  })}
-                </p>
-                <p>
-                  Amount: Rs.
-                  {(item.product.offerPrice * item.quantity).toFixed(2)}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       ))}
     </div>
   );
 };
+
 export default MyOrders;

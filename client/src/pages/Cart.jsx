@@ -8,8 +8,8 @@ const Cart = () => {
     cartCount,
     totalCartAmount,
     cartItems,
-    //setCartItems,
-    addOrder,
+    setCartItems,
+    //addOrder,
     //orders,
     removeFromCart,
     updateCartItem,
@@ -62,27 +62,36 @@ const Cart = () => {
       getCart();
     }
   }, [products, cartItems]);
-  
-  
-  const placeOrder = () => {
+
+  const placeOrder = async () => {
     if (!selectedAddress) {
       return toast.error("Please select an address");
     }
+
     const items = cartArray.map((item) => ({
-      product: item,
+      product: item._id,
       quantity: item.quantity,
     }));
-    const amount = totalCartAmount() + (totalCartAmount() * 2) / 100;
 
-    addOrder({
-      items,
-      address: selectedAddress,
-      paymentType: paymentOption,
-      amount,
-    });
+    try {
+      const res = await axios.post(
+        "/api/order/cod",
+        {
+          items,
+          address: selectedAddress._id,
+        },
+        { withCredentials: true },
+      );
 
-    toast.success("Order placed successfully!");
-    navigate("/my-orders");
+      if (res.data.success) {
+        toast.success("Order placed successfully!");
+        setCartItems({});
+        navigate("/my-orders");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to place order");
+    }
   };
 
   if (!products.length || !cartItems || cartArray.length === 0) {
@@ -147,7 +156,7 @@ const Cart = () => {
                       className="outline-none"
                     >
                       {Array(
-                        cartItems[product._id] > 9 ? cartItems[product._id] : 9
+                        cartItems[product._id] > 9 ? cartItems[product._id] : 9,
                       )
                         .fill("")
                         .map((_, index) => (

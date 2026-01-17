@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/connectDB.js";
 dotenv.config();
 import userRoutes from "./routes/user.routes.js";
-import productRoutes from "./routes/product.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import addressRoutes from "./routes/address.routes.js";
 import orderRoutes from "./routes/order.routes.js";
@@ -28,7 +27,6 @@ app.use(express.json());
 // Api endpoints
 app.use("/images", express.static("uploads"));
 app.use("/api/user", userRoutes);
-app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/address", addressRoutes);
 app.use("/api/order", orderRoutes);
