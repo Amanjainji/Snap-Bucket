@@ -1,208 +1,99 @@
-# 🛒 Snap Bucket - Client
+# 🛒 Snap Bucket
 
-A modern, responsive grocery e-commerce web application built with React and Vite. Snap Bucket offers fresh, organic produce and groceries with a focus on quality and savings.
-
-## 🌟 Home page
-
-![Snap Bucket Homepage](Screenshots/Banner.png)
-
-## 🌟 All Products page
-
-![Snap Bucket AllProducts](Screenshots/Home.png)
-
-## 🌟 Product page
-
-![Snap Bucket Product](Screenshots/Product.png)
-
-## 🌟 Cart page
-
-![Snap Bucket Cart](Screenshots/Cart.png)
-
-## 🌟 Orders Placed page
-
-![Snap Bucket Orders Placed](Screenshots/Orders.png)
+A full-stack grocery e-commerce web application built with the MERN stack. Snap Bucket provides product browsing, search, cart management, authentication, address management, and order placement through a responsive web interface.
 
 ## 🌟 Features
 
-- **Modern UI/UX**: Clean, responsive design optimized for all devices
-- **Product Catalog**: Browse through various categories of fresh produce and groceries
-- **Search Functionality**: Quick product search with real-time results
-- **Shopping Cart**: Add, remove, and manage items in your cart
-- **User Authentication**: Secure login and registration system using JWT
-- **Product Categories**: Organized product browsing by categories
-- **Add Address**: To add address for Delivery ,before placing order
-- **Orders Placed**: To check previous order placed
+- **Modern UI/UX** – Responsive grocery shopping interface
+- **Product Catalog** – Browse products across multiple categories
+- **Search** – Search products quickly
+- **Shopping Cart** – Add, remove, and update cart items
+- **User Authentication** – JWT-based authentication
+- **Product Categories** – Browse products by category
+- **Address Management** – Add delivery addresses before placing orders
+- **Order Management** – View previously placed orders
+- **Payment Integration** – Stripe payment integration
+- **Image Management** – Cloudinary integration for product images
+
+## 🖥️ Screenshots
+
+### Home Page
+![Snap Bucket Homepage](Screenshots/Banner.png)
+
+### All Products
+![Snap Bucket All Products](Screenshots/Home.png)
+
+### Product Page
+![Snap Bucket Product](Screenshots/Product.png)
+
+### Cart
+![Snap Bucket Cart](Screenshots/Cart.png)
+
+### Orders
+![Snap Bucket Orders](Screenshots/Orders.png)
 
 ## 🚀 Live Demo
 
-Visit the live application: [https://snap-bucket-client.onrender.com](https://snap-bucket-client.onrender.com)
+[https://snap-bucket-client.onrender.com](https://snap-bucket-client.onrender.com)
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 
-- **React 18** - Modern React with hooks and functional components
-- **Vite** - Fast build tool and development server
-- **JavaScript/ES6+** - Modern JavaScript features
-- **Tailwind** - Custom styling with responsive design
-- **React Router** - Client-side routing
+- React
+- Vite
+- JavaScript / ES6+
+- Tailwind CSS
+- React Router
+- Axios
 
-### Backend Integration
+### Backend
 
-- **JWT Authentication** - Secure token-based authentication
-- **REST API** - Integration with Express.js backend
-- **MongoDB** - Database integration for user and product data
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+- Stripe
+- Cloudinary
 
-## 📦 Installation
+### Deployment & DevOps
 
-### Prerequisites
+- Docker
+- Docker Compose
+- Nginx
+- Render
+- MongoDB Atlas
 
-- Node.js (v16 or higher)
-- npm package manager
+## 📁 Project Structure
 
-### Setup
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/Amanjainji/snap-Bucket-client.git
-   cd snap-Bucket-client
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Environment Variables**
-   Create a `.env` file in the root directory:
-
-   ```env
-   VITE_API_BASE_URL=your_backend_api_url
-   VITE_JWT_SECRET=your_jwt_secret
-   ```
-
-4. **Start the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser**
-   Navigate to `http://localhost:5173`
-
-## 🏗️ Build for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory.
-
-## 📁 Project Structure for frontend
-
-```
-snap-Bucket-client/
-├── public/
-│   ├── index.html
-│   └── assets/
-├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   ├── ProductCard/
-│   │   ├── Cart/
-│   │   └── Auth/
-│   ├── pages/
-│   │   ├── Home/
-│   │   ├── Products/
-│   │   ├── Login/
-│   │   └── Register/
-│   ├── services/
-│   │   ├── api.js
-│   │   └── auth.js
-│   ├── utils/
-│   ├── styles/
-│   ├── App.jsx
-│   └── main.jsx
-├── package.json
-├── vite.config.js
+```text
+snap-Bucket/
+├── backend/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── uploads/
+│   ├── index.js
+│   ├── package.json
+│   ├── Dockerfile
+│   └── .dockerignore
+│
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   ├── Dockerfile
+│   ├── nginx.conf
+│   └── .dockerignore
+│
+├── docker-compose.yml
+├── .gitignore
 └── README.md
-```
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint for code quality
-
-## 🌐 API Integration
-
-This client application integrates with a separate Express.js backend API that handles:
-
-- User authentication and authorization
-- Product management
-- Order processing
-- Cart operations
-- User profile management
-
-## 📱 Responsive Design
-
-The application is fully responsive and optimized for:
-
-- Desktop computers
-- Tablets
-- Mobile phones
-- Various screen sizes and orientations
-
-## 🔐 Authentication
-
-- JWT-based authentication system
-- Secure token storage
-- Protected routes for authenticated users
-- Login and registration functionality
-
-## 🛍️ Key Pages
-
-- **Home**: Landing page with featured products and categories
-- **Products**: Complete product catalog with filtering
-- **Cart**: Shopping cart management
-- **Login/Register**: User authentication pages
-- **Orders**: User can check its orders placed
-
-## 🎨 Design Features
-
-- Clean, modern interface
-- Green color scheme representing freshness
-- Intuitive navigation
-- Product imagery and descriptions
-- Call-to-action buttons
-- Category-based organization
-
-## 🚀 Deployment
-
-The application is deployed on Render. For your own deployment:
-
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting service
-3. Configure environment variables on your hosting platform
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit your changes: `git commit -am 'Add new feature'`
-4. Push to the branch: `git push origin feature/new-feature`
-5. Submit a pull request
-
-## 📞 Support
-
-If you have any questions or need help, please:
-
-- Open an issue on GitHub
-- Contact: ajamanjain27@gmail.com
-
----
-
-⭐ **Star this repository if you found it helpful!**

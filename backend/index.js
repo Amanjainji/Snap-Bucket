@@ -17,6 +17,7 @@ await connectCloudinary();
 // allow multiple origins
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:3000",
   "https://snap-bucket-client.onrender.com",
 ];
 //middlewares
